@@ -18,16 +18,15 @@ exports.createLesson = async (req, res) => {
     }
 };
 
-// 2. جلب كل الدروس (ممكن تصفيتها عن طريق courseID)
 exports.getAllLessons = async (req, res) => {
     try {
-        // بنقدر نستقبل courseId في الـ query parameters (مثال: /api/lessons?courseId=...)
         const { courseId } = req.query;
         let query = {};
+
+
         if (courseId) {
-            query.courseID = courseId; // لو courseId موجود، بنضيفه لشرط البحث
+            query.courseID = courseId; 
         }
-        // .populate('courseID', 'title'): دي بتجيب معلومات الكورس اللي الدرس تابع ليه، وبنختار نجيب الـ 'title' بس عشان ميبقاش البيانات كتير
         const lessons = await Lesson.find(query).populate('courseID', 'title');
         res.status(200).json(lessons);
     } catch (error) {

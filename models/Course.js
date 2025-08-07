@@ -12,8 +12,8 @@ const courseSchema = new mongoose.Schema({
         required: true
     },
     instructorID: {
-        type: mongoose.Schema.Types.ObjectId, /
-        ref: 'User', /
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
         required: false
     },
     categoryID: {
@@ -22,12 +22,12 @@ const courseSchema = new mongoose.Schema({
         required: false
     },
     price: {
-        type: [String], // مصفوفة من النصوص (ممكن تكون "free", "paid" وهكذا)
+        type: [String], 
         required: true
     },
     level: {
         type: String,
-        enum: ['beginner', 'intermediate', 'advanced'], // بيحدد القيم المسموح بيها للحقل ده
+        enum: ['beginner', 'intermediate', 'advanced'], 
         required: true
     },
     language: {
@@ -36,20 +36,19 @@ const courseSchema = new mongoose.Schema({
         trim: true
     },
     estimatedDuration: {
-        type: Number, // المدة بالساعات
+        type: Number, 
         required: true
     },
     coverImageURL: {
         type: String,
-        required: false // ممكن يكون إجباري أو اختياري حسب متطلباتك
+        required: false
     },
     dateCreated: {
         type: Date,
-        default: Date.now // القيمة الافتراضية هي تاريخ ووقت الإنشاء الحالي
+        default: Date.now
     }
 }, {
-    timestamps: true // بيضيف حقلين تلقائيًا: createdAt (وقت الإنشاء) و updatedAt (وقت آخر تعديل)
+    timestamps: true
 });
 
-// بنصدر النموذج عشان نقدر نستخدمه في أجزاء تانية من التطبيق
 module.exports = mongoose.model('Course', courseSchema);
